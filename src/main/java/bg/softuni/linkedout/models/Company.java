@@ -19,7 +19,7 @@ public class Company extends BaseEntity{
     //· name – a char sequence. Must be unique and cannot be null. Must be between 2 and 10 characters.
     //
     //· town – a char sequence. Cannot be null. Must be between 2 and 10 characters.
-    private BigDecimal budget;
+    private Integer budget;
     @Column(columnDefinition = "TEXT")
     private String description;
     private String name;
@@ -39,11 +39,11 @@ public class Company extends BaseEntity{
         this.employees = employees;
     }
 
-    public BigDecimal getBudget() {
+    public Integer getBudget() {
         return budget;
     }
 
-    public void setBudget(BigDecimal budget) {
+    public void setBudget(Integer budget) {
         this.budget = budget;
     }
 

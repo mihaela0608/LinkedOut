@@ -31,33 +31,33 @@
         <div class="justify-content-center">
             <h1>Add Company</h1>
         </div>
-        <form class="m-md-auto w-50 text-center">
+        <form class="m-md-auto w-50 text-center" th:action="@{/companies/add}" th:object="${company}" method="post">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control text-center" id="name" aria-describedby="nameHelp" 
-				name="name"/>
-                <small>Error message</small>
+				name="name" th:field="*{name}"/>
+                <small class="text-danger" th:if="${#fields.hasErrors('name')}">Name length should be between 2 and 10 symbols</small>
             </div>
 
             <div class="form-group">
                 <label for="town">Town</label>
                 <input type="text" class="form-control text-center" id="town" aria-describedby="town" 
-				name="town"/>
-                <small>Error message</small>
+				name="town" th:field="*{town}"/>
+                <small class="text-danger" th:if="${#fields.hasErrors('town')}">Town length should be between 2 and 10 symbols</small>
             </div>
 
             <div class="form-group">
                 <label for="description">Description</label>
                 <input type="text" class="form-control text-center" 
-				id="description" aria-describedby="description" name="description"/>
-                <small>Error message</small>
+				id="description" aria-describedby="description" name="description" th:field="*{description}"/>
+                <small class="text-danger" th:if="${#fields.hasErrors('description')}">Description length should be at least 10 symbols</small>
             </div>
 
             <div class="form-group">
                 <label for="budget">Budget</label>
                 <input type="number" min="0" class="form-control text-center" 
-				id="budget" aria-describedby="town" name="town"/>
-                <small>Budget</small>
+				id="budget" aria-describedby="town" name="budget" th:field="*{budget}"/>
+                <small class="text-danger" th:if="${#fields.hasErrors('budget')}">Budget should be positive number</small>
             </div>
 
             <button type="submit" class="btn btn-secondary">Add Company</button>

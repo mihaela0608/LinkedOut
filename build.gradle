@@ -22,6 +22,11 @@ dependencies {
     runtimeOnly 'com.mysql:mysql-connector-j'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.1.1'
+    implementation group: 'jakarta.validation', name: 'jakarta.validation-api', version: '3.1.0'
+    implementation 'org.hibernate.validator:hibernate-validator:8.0.0.Final'
+
+
 }
 
 tasks.named('test') {
