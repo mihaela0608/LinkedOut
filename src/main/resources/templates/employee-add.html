@@ -32,7 +32,7 @@
             <div class="justify-content-center">
                 <h1>Add Employee</h1>
             </div>
-            <form class="m-md-auto w-50 text-center">
+            <form class="m-md-auto w-50 text-center" th:action="@{/employees/add}" method="post">
 
                 <div class="form-group">
                     <label for="firstName">First Name</label>
@@ -86,7 +86,7 @@
 
                 <div class="form-group">
                     <label for="birthDate">Birth Date</label>
-                    <input type="date" class="form-control text-center" id="birthDate" aria-describedby="birthDate" name="birthDate" />
+                    <input type="date" class="form-control text-center" id="birthDate" aria-describedby="birthDate" name="birthdate" />
                     <small>Error message</small>
                 </div>
 

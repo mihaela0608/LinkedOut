@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "employees")
-public class Employee extends BaseEntity{
+public class Employee extends BaseEntity {
     //birthdate – a date. Cannot be null.
     //
     //· educationLevel – a char sequence. Cannot be null.
@@ -31,7 +31,7 @@ public class Employee extends BaseEntity{
     private String jobTitle;
     @Column(name = "last_name")
     private String lastName;
-    private BigDecimal salary;
+    private Integer salary;
     @ManyToOne
     private Company company;
 
@@ -83,11 +83,11 @@ public class Employee extends BaseEntity{
         this.lastName = lastName;
     }
 
-    public BigDecimal getSalary() {
+    public Integer getSalary() {
         return salary;
     }
 
-    public void setSalary(BigDecimal salary) {
+    public void setSalary(Integer salary) {
         this.salary = salary;
     }
 }

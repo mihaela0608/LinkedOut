@@ -1,9 +1,6 @@
 package bg.softuni.linkedout.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -19,6 +16,7 @@ public class Company extends BaseEntity{
     //· name – a char sequence. Must be unique and cannot be null. Must be between 2 and 10 characters.
     //
     //· town – a char sequence. Cannot be null. Must be between 2 and 10 characters.
+
     private Integer budget;
     @Column(columnDefinition = "TEXT")
     private String description;

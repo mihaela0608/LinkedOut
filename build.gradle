@@ -25,10 +25,13 @@ dependencies {
     implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.1.1'
     implementation group: 'jakarta.validation', name: 'jakarta.validation-api', version: '3.1.0'
     implementation 'org.hibernate.validator:hibernate-validator:8.0.0.Final'
-
-
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+// Set the encoding for the Java compile task
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
 }
