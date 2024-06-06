@@ -8,6 +8,9 @@ import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class CompanyServiceImpl implements CompanyService {
     private final CompanyRepository companyRepository;
@@ -24,5 +27,11 @@ public class CompanyServiceImpl implements CompanyService {
     public void registerCompany(CompanyRegisterDto companyRegisterDto) {
         Company company = modelMapper.map(companyRegisterDto, Company.class);
         companyRepository.saveAndFlush(company);
+    }
+
+    @Override
+    public List<String> getAllCompaniesNames() {
+        List<String> companies = companyRepository.findAll().stream().map(c -> c.getName()).collect(Collectors.toList());
+        return companies;
     }
 }

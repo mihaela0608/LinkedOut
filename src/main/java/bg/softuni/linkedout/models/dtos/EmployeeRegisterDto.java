@@ -29,6 +29,7 @@ public class EmployeeRegisterDto {
     @NotNull
     private Integer salary;
 
+    @NotNull
     private String company;
 
     public String getBirthdate() {
