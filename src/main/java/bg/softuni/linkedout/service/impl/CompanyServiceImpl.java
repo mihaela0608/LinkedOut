@@ -34,4 +34,9 @@ public class CompanyServiceImpl implements CompanyService {
         List<String> companies = companyRepository.findAll().stream().map(c -> c.getName()).collect(Collectors.toList());
         return companies;
     }
+
+    @Override
+    public List<Company> getAllCompanies() {
+        return companyRepository.findAll();
+    }
 }

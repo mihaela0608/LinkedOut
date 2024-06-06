@@ -1,5 +1,6 @@
 package bg.softuni.linkedout.web;
 
+import bg.softuni.linkedout.models.Company;
 import bg.softuni.linkedout.models.dtos.CompanyRegisterDto;
 import bg.softuni.linkedout.service.CompanyService;
 import jakarta.validation.Valid;
@@ -9,6 +10,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 @Controller
 public class CompaniesController {
@@ -36,5 +39,12 @@ public class CompaniesController {
         }
         companyService.registerCompany(companyRegisterDto);
         return "redirect:/";
+    }
+
+    @GetMapping("/companies/all")
+    public String viewAllCompanies(Model model){
+        List<Company> allCompanies = companyService.getAllCompanies();
+        model.addAttribute("companies", allCompanies);
+        return "company-all";
     }
 }
