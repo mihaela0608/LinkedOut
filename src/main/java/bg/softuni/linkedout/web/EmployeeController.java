@@ -2,6 +2,7 @@ package bg.softuni.linkedout.web;
 
 import bg.softuni.linkedout.models.dtos.EmployeeRegisterDto;
 import bg.softuni.linkedout.service.CompanyService;
+import bg.softuni.linkedout.service.EmployeeService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +14,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class EmployeeController {
     private final CompanyService companyService;
+    private final EmployeeService employeeService;
 
-    public EmployeeController(CompanyService companyService) {
+    public EmployeeController(CompanyService companyService, EmployeeService employeeService) {
         this.companyService = companyService;
+        this.employeeService = employeeService;
     }
 
     @GetMapping("employees/add")
@@ -36,7 +39,7 @@ public class EmployeeController {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.employeeRegisterDto", bindingResult);
             return "redirect:/employees/add";
         }
-
-        return "index";
+        employeeService.registerEmployee(employeeRegisterDto);
+        return "redirect:/";
     }
 }
