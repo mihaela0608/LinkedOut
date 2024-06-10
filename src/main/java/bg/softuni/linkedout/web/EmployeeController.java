@@ -9,9 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
+@RequestMapping("/employees")
 public class EmployeeController {
     private final CompanyService companyService;
     private final EmployeeService employeeService;
@@ -21,7 +23,7 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @GetMapping("employees/add")
+    @GetMapping("/add")
     public String addEmployeeView(Model model){
         if (!model.containsAttribute("employeeRegisterDto")){
             model.addAttribute("employeeRegisterDto", new EmployeeRegisterDto());
@@ -30,7 +32,7 @@ public class EmployeeController {
        return "employee-add";
     }
 
-    @PostMapping("employees/add")
+    @PostMapping("/add")
     public String addEmployee(@Valid EmployeeRegisterDto employeeRegisterDto, BindingResult bindingResult, RedirectAttributes redirectAttributes){
         if (bindingResult.hasErrors()){
             System.out.println(employeeRegisterDto.getLastName()+ employeeRegisterDto.getBirthdate()+ employeeRegisterDto.getCompany()+ employeeRegisterDto.getFirstName()+ employeeRegisterDto.getSalary()+employeeRegisterDto.getJobTitle() + employeeRegisterDto.getEducationLevel());
@@ -41,5 +43,11 @@ public class EmployeeController {
         }
         employeeService.registerEmployee(employeeRegisterDto);
         return "redirect:/";
+    }
+
+    @GetMapping("/all")
+    public String viewAllEmployees(Model model){
+        model.addAttribute("employees", employeeService.getAll());
+        return "employee-all";
     }
 }
